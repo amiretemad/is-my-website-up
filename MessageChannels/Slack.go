@@ -22,7 +22,7 @@ func NewSlackChannel(l Structs.LinkStruct) SlackChannel {
 
 func (sc *SlackChannel) SendMessage() bool {
 
-	message := slackMessage{Text: sc.l.Description + " Is Down!"}
+	message := slackMessage{Text: "*" + sc.l.Description + "* Is Down!"}
 	slackMessageJson, _ := json.Marshal(message)
 
 	request, _ := http.NewRequest("POST",
