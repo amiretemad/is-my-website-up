@@ -1,6 +1,6 @@
 # Is my website up ?
 
-A simple script to check your website is up or down and get notified on your Slack
+A simple script to check your website is up or down and get notified on **Slack**
 
 ## Description
 
