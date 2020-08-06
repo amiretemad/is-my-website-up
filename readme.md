@@ -2,6 +2,8 @@
 
 A simple script to check your website is up or down and get notified on **Slack**
 
+![Image](https://i.ibb.co/Sm1mXJX/Screen-Shot-2020-08-06-at-2-36-54-PM.png)
+
 ## Description
 
 A simple script to check your website is up or down by adding list of websites to Links Struct inside main.go you are able to check the status of your website 
