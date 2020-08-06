@@ -20,7 +20,7 @@ Building Script:
 go build main.go
 ```
 
-## Define your links inside linkStruct
+## Define your links inside Structs/LinkStruct.go
 
 You can easily add your own links inside this list of links.
 ```
@@ -46,3 +46,9 @@ You can easily add your own links inside this list of links.
 	}
 ```
 
+## Creating .env file
+make a copy of .env.example in root directory of project as .env and enter your Slack Hook URL
+
+```
+SLACK_HOOK_URL=<YOUR SLACK HOOK URL>
+```
