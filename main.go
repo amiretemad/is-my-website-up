@@ -2,47 +2,28 @@ package main
 
 import (
 	"fmt"
+	"github.com/joho/godotenv"
+	"log"
+	"main/MessageChannels"
+	"main/Structs"
 	"net/http"
 	"time"
 )
-
-type linkStruct struct {
-	Label       string
-	Link        string
-	Description string
-	IsUp        bool
-}
 
 const colorRed = "\033[31m"
 const colorGreen = "\033[32m"
 
 func main() {
 
-	links := []linkStruct{
-		{
-			Label:       "Amazon",
-			Link:        "https://amazon.com",
-			Description: "Amazon Website",
-			IsUp:        false,
-		},
-		{
-			Label:       "Spotify",
-			Link:        "http://spotify.com",
-			Description: "Spotify Website",
-			IsUp:        false,
-		},
-		{
-			Label:       "Google",
-			Link:        "https://google.com",
-			Description: "Google Main Website",
-			IsUp:        false,
-		},
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
 	}
 
-	// Making Channel
-	c := make(chan linkStruct)
+	c := make(chan Structs.LinkStruct)
 
-	for _, l := range links {
+	newLinkStruct := Structs.NewLinkStruct()
+	for _, l := range newLinkStruct.GetLinks() {
 		go checkLinkHealth(l, c)
 	}
 
@@ -53,12 +34,13 @@ func main() {
 			fmt.Println(colorGreen, l.Label+" Is Up ("+l.Link+")")
 		} else {
 			fmt.Println(colorRed, l.Label+" Is Down ("+l.Link+")")
+			channel := MessageChannels.NewSlackChannel(l)
+			channel.SendMessage()
 		}
 	}
-
 }
 
-func checkLinkHealth(l linkStruct, c chan linkStruct) {
+func checkLinkHealth(l Structs.LinkStruct, c chan Structs.LinkStruct) {
 	_, err := http.Get(l.Link)
 
 	if err != nil {
