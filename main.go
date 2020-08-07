@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/joho/godotenv"
 	"log"
-	"main/MessageChannels"
 	"main/Structs"
 	"net/http"
 	"time"
@@ -28,15 +27,14 @@ func main() {
 	}
 
 	for l := range c {
-		time.Sleep(time.Second * 2)
-		go checkLinkHealth(l, c)
 		if l.IsUp {
 			fmt.Println(colorGreen, l.Label+" Is Up ("+l.Link+")")
 		} else {
 			fmt.Println(colorRed, l.Label+" Is Down ("+l.Link+")")
-			channel := MessageChannels.NewSlackChannel(l)
-			channel.SendMessage()
+			MessageSender(&l)
 		}
+		time.Sleep(time.Second * 2)
+		go checkLinkHealth(l, c)
 	}
 }
 
