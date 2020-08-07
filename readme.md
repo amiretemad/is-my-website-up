@@ -9,7 +9,7 @@ A simple script to check your website is up or down and you will be notified fro
 A simple script to check your website is up or down by adding lists of websites to Links Struct, you will able to check the status of your website.
 
 
-## Supported channels 
+## Supported Messaging channels 
 
  - Slack (ready to use)
  - Mattermost (ready to use)
