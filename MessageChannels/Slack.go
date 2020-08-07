@@ -8,21 +8,21 @@ import (
 	"os"
 )
 
-type SlackChannel struct {
-	l Structs.LinkStruct
-}
-
 type slackMessage struct {
 	Text string `json:"text"`
 }
 
-func NewSlackChannel(l Structs.LinkStruct) SlackChannel {
-	return SlackChannel{l}
+type SlackChannel struct {
+	L Structs.LinkStruct
 }
 
 func (sc *SlackChannel) SendMessage() bool {
 
-	message := slackMessage{Text: "*" + sc.l.Description + "* Is Down!"}
+	if os.Getenv("SLACK_HOOK_URL") == "" {
+		return false
+	}
+
+	message := slackMessage{Text: "*" + sc.L.Description + "* Is Down!"}
 	slackMessageJson, _ := json.Marshal(message)
 
 	request, _ := http.NewRequest("POST",
