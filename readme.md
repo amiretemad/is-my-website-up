@@ -11,8 +11,8 @@ A simple script to check your website is up or down by adding lists of websites 
 
 ## Supported channels 
 
- - slack (ready to use)
- - mattermost (ready to use)
+ - Slack (ready to use)
+ - Mattermost (ready to use)
 
 ## Executing program
 
