@@ -1,6 +1,6 @@
 # Is my website up ?
 
-A simple script to check your website is up or down and you will be notified from **Slack**
+A simple script to check your website is up or down and you will be notified from **Slack** and **Mattermost**
 
 ![Image](https://i.ibb.co/Sm1mXJX/Screen-Shot-2020-08-06-at-2-36-54-PM.png)
 
@@ -12,7 +12,7 @@ A simple script to check your website is up or down by adding lists of websites 
 ## Supported channels 
 
  - slack (ready to use)
- - mattermost (working on it)
+ - mattermost (ready to use)
 
 ## Executing program
 
@@ -58,5 +58,6 @@ links := []linkStruct{
 make a copy of .env.example in root directory of project as .env and enter your Slack Hook URL
 
 ```
-SLACK_HOOK_URL=<YOUR SLACK HOOK URL>
+SLACK_HOOK_URL=YOUR SLACK HOOK URL
+MATTERMOST_HOOK_URL=YOUR MATTERMOST HOOK URL
 ```
